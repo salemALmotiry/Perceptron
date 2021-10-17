@@ -194,7 +194,7 @@ class perceptron:
             plt.ylabel('Accuracie')
             plt.legend()
             
-            plt5 = plt.figure()
+            plt5 = plt.figure(5)
             plt.plot(self.errors,c='black', label='train_Errors')
             plt.plot(self.test_errors,c='g',label='test_test')
 
