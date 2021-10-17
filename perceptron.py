@@ -1,10 +1,5 @@
-
-from matplotlib import widgets
 import numpy as np
-import math
 import matplotlib.pyplot as plt
-
-from numpy.lib.function_base import select
 
 class perceptron:
     def __init__(self, features):
@@ -12,6 +7,7 @@ class perceptron:
         self.weights = np.zeros((features), dtype=float) # init weights with zero 
         self.bias = np.zeros(1, dtype=float) # bias with zero 
         self.errors= np.array([])
+        self.test_errors = np.array([])
         self.Train_accuracie = np.array([0])
         self.Test_accuracie = np.array([])
         self.Train_F1_score = np.array([])
@@ -71,22 +67,23 @@ class perceptron:
                         self.update(xi,yi)
                         error+=1
                         
-           
+                  
             ac = self.accuracies(X_train,y_train)
             self.Train_accuracie =np.append( self.Train_accuracie,ac[0])
             self.Train_Precision = np.append(self.Train_Precision, ac[2]) 
             self.Train_Recall = np.append(self.Train_Recall, ac[3]) 
             self.Train_F1_score = np.append(self.Train_F1_score, ac[4]) 
+                   
+            self.errors = np.append(self.errors, error)
             
             ac  = self.accuracies(X_test,y_test)   
             self.Test_accuracie =np.append( self.Test_accuracie,ac[0])
             self.Test_Precision = np.append(self.Test_Precision, ac[2]) 
             self.Test_Recall = np.append(self.Test_Recall, ac[3]) 
             self.Test_F1_score = np.append(self.Test_F1_score, ac[4]) 
+            self.test_errors = np.append(self.test_errors, ac[5]) 
             
 
-                   
-            self.errors = np.append(self.errors, error)
         
         return self.weights,self.bias   
     
@@ -147,7 +144,7 @@ class perceptron:
         except : 
             F1_score = 0
             
-        return accuracie,error,Precision,Recall,F1_score
+        return accuracie,error,Precision,Recall,F1_score,incorrect
     
     def make_prediction(self,x,y):
         
@@ -159,7 +156,7 @@ class perceptron:
     def plot_data(self):
             font1 = {'family':'serif','color':'black','size':20}
             
-            plt5 = plt.figure(5)
+            plt1 = plt.figure(1)
 
             plt.plot(self.Train_Precision,c='black', label='Train_Precision')
             plt.plot(self.Test_Precision,c='g', label='Test_Precision' ,linestyle='--')
@@ -168,7 +165,7 @@ class perceptron:
             plt.ylabel('Precision')
             plt.legend()
             
-            plt6 = plt.figure(6)
+            plt2 = plt.figure(2)
 
             plt.plot(self.Train_Recall,c='black', label='Train_Recall')
             plt.plot(self.Test_Recall,c='g', label='Test_Recall' ,linestyle='--')
@@ -197,8 +194,9 @@ class perceptron:
             plt.ylabel('Accuracie')
             plt.legend()
             
-            plt1 = plt.figure(1)
-            plt.plot(self.errors,c='black', label='Errors')
+            plt5 = plt.figure()
+            plt.plot(self.errors,c='black', label='train_Errors')
+            plt.plot(self.test_errors,c='g',label='test_test')
 
             plt.title('Errors',fontdict = font1)
             plt.xlabel('Iterations')
@@ -222,13 +220,13 @@ def main():
     X_test,y_test = p.dataFilter('test.data',2,'test')
         
         
-    w , b = p.PerceptronTrain(X_train,y_train,X_test,y_test,30)
+    w , b = p.PerceptronTrain(X_train,y_train,X_test,y_test,5)
    
     print('Result :')
     print( '\nweights : ' , p.weights,'bias :', p.bias )
     pp = p.accuracies(X_test,y_test)
     print('Testing : \naccuracie : ', pp[0] ,'%',' , Precision : ', pp[2],', Recall : ',pp[3],', F1_score : ', pp[4])
-    
+    print(pp)
     p.plot_data()
 
 
