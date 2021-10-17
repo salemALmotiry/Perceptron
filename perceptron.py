@@ -156,7 +156,7 @@ class perceptron:
     def plot_data(self):
             font1 = {'family':'serif','color':'black','size':20}
             
-            plt1 = plt.figure(1)
+            plt5 = plt.figure(5)
 
             plt.plot(self.Train_Precision,c='black', label='Train_Precision')
             plt.plot(self.Test_Precision,c='g', label='Test_Precision' ,linestyle='--')
@@ -165,7 +165,7 @@ class perceptron:
             plt.ylabel('Precision')
             plt.legend()
             
-            plt2 = plt.figure(2)
+            plt4 = plt.figure(4)
 
             plt.plot(self.Train_Recall,c='black', label='Train_Recall')
             plt.plot(self.Test_Recall,c='g', label='Test_Recall' ,linestyle='--')
@@ -185,7 +185,7 @@ class perceptron:
             plt.ylabel('F1 score')
             plt.legend()
 
-            plt4 = plt.figure(4)
+            plt2 = plt.figure(2)
 
             plt.plot(self.Train_accuracie,c='black', label='Train_accuracie')
             plt.plot(self.Test_accuracie,c='g', label='Test_accuracie' ,linestyle='--')
@@ -194,7 +194,7 @@ class perceptron:
             plt.ylabel('Accuracie')
             plt.legend()
             
-            plt5 = plt.figure(5)
+            plt1 = plt.figure(1)
             plt.plot(self.errors,c='black', label='train_Errors')
             plt.plot(self.test_errors,c='g',label='test_test')
 
