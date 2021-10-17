@@ -220,7 +220,7 @@ def main():
     X_test,y_test = p.dataFilter('test.data',2,'test')
         
         
-    w , b = p.PerceptronTrain(X_train,y_train,X_test,y_test,5)
+    w , b = p.PerceptronTrain(X_train,y_train,X_test,y_test,30)
    
     print('Result :')
     print( '\nweights : ' , p.weights,'bias :', p.bias )
