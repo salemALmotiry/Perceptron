@@ -6,9 +6,9 @@ To initialize the perceptron model with 4 features (x1, x2, x3, x4), run the fol
 
 To filter the data, use the dataFilter() function. This function requires the file path, filter number, and type of file. The filter number can be one of the following:
 `
-1: Class 1 with class 2
-2: Class 2 with class 3
-3: Class 1 with class 3
+__1: Class 1 with class 2
+__2: Class 2 with class 3
+__3: Class 1 with class 3
 `
 For example, to filter the training data with filter number 2, use the following code:
 
